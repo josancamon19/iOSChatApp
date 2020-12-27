@@ -8,16 +8,22 @@
 import UIKit
 
 class MessageViewCell: UITableViewCell {
+    
+    @IBOutlet weak var messageText : UILabel!
+    @IBOutlet weak var messageSender : UILabel!
+    
+    func setMessage(message: Message, myUser: User, userToChat: User){
+        messageText.text = message.text
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+        if message.sender == myUser.id {
+            messageSender.text = myUser.email
+            messageText.textAlignment = .right
+            messageSender.textAlignment = .right
+        } else{
+            messageSender.text = userToChat.email
+            messageText.textAlignment = .left
+            messageSender.textAlignment = .left
+        }
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
+    
 }
